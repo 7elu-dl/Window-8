@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8番窓口</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- タイトル画面 -->
+    <div id="title-screen" class="screen active">
+        <div class="title-content">
+            <h1 class="game-title">8番窓口</h1>
+            <p class="subtitle">─ 建築確認申請チェックゲーム ─</p>
+            <div class="title-description">
+                <p>あなたは建築確認申請の書類を提出するため、</p>
+                <p>役所の1番窓口から8番窓口まで順番に審査を受けます。</p>
+                <p>各窓口で書類をチェックし、誤りがあれば訂正印を押してください。</p>
+                <p class="warning">全ての誤りを見逃さずに...</p>
+            </div>
+            <button id="start-button" class="menu-button">ゲームを始める</button>
+        </div>
+    </div>
+
+    <!-- ストーリー画面 -->
+    <div id="story-screen" class="screen">
+        <div class="story-content">
+            <div class="story-text">
+                <p class="story-paragraph">2024年9月1日、月曜日。</p>
+                <p class="story-paragraph">あなたの名前は<strong>山田太郎</strong>、建築主。</p>
+                <p class="story-paragraph">東京都港区に念願のマイホームを建てることになった。<br>設計事務所と相談を重ね、ついに建築確認申請の日を迎えた。</p>
+                <p class="story-paragraph">今日は区役所の建築指導課を訪れた。<br>建築確認申請を提出するため、8つの窓口で審査を受ける。</p>
+                <p class="story-paragraph fade-in-delay warning">しかし、建築確認申請は複雑だ。<br>書類の記載ルール、数値の整合性、日付の前後関係...<br><strong>一つでも間違えると、最初からやり直し</strong>になる。</p>
+                <p class="story-paragraph fade-in-delay">受付で案内されたのは、長い廊下の先にある窓口。<br>「1番窓口から順番に審査を受けてください」</p>
+                <p class="story-paragraph fade-in-delay">職員は無表情にそう告げた。</p>
+                <p class="story-paragraph fade-in-delay warning">「8番窓口まで、すべて正確に。<br>不備があると、最初からやり直しです」</p>
+                <p class="story-paragraph fade-in-delay">薄暗い廊下を歩きながら、あなたは不安を覚えた。<br>本当に全ての書類が正しいだろうか――</p>
+            </div>
+            <button id="story-continue-button" class="action-button" style="display: none;">手続きを開始する</button>
+        </div>
+    </div>
+
+    <!-- プレイヤー情報画面 -->
+    <div id="info-screen" class="screen">
+        <div class="info-content">
+            <h2>申請者・建築物の正しい情報</h2>
+            <p class="info-subtitle">書類審査の際、職員に指摘された不備を訂正するため、正しい情報を確認してください。</p>
+            <div class="info-card">
+                <div class="info-columns">
+                    <div class="info-column">
+                        <div class="info-section">
+                            <h3>建築主情報</h3>
+                            <div class="info-row">
+                                <span class="info-label">氏名</span>
+                                <span class="info-value">山田 太郎</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">住所</span>
+                                <span class="info-value">東京都港区赤坂一丁目2番3号</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">電話番号</span>
+                                <span class="info-value">03-1234-5678</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>設計者情報</h3>
+                            <div class="info-row">
+                                <span class="info-label">名称</span>
+                                <span class="info-value">建築設計事務所 株式会社</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">代表者</span>
+                                <span class="info-value">田中 一郎</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">資格</span>
+                                <span class="info-value">一級建築士 第123456号</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>建築物の基本情報</h3>
+                            <div class="info-row">
+                                <span class="info-label">用途</span>
+                                <span class="info-value">一戸建ての住宅</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">構造</span>
+                                <span class="info-value">木造</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">階数</span>
+                                <span class="info-value">地上2階</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-column">
+                        <div class="info-section">
+                            <h3>面積情報</h3>
+                            <div class="info-row">
+                                <span class="info-label">敷地面積</span>
+                                <span class="info-value">200.00㎡</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">建築面積</span>
+                                <span class="info-value">100.00㎡</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">延べ面積</span>
+                                <span class="info-value">180.00㎡</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">建ぺい率</span>
+                                <span class="info-value">50%（制限60%）</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">容積率</span>
+                                <span class="info-value">90%（制限200%）</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>日付情報</h3>
+                            <div class="info-row">
+                                <span class="info-label">事前協議日</span>
+                                <span class="info-value">令和6年8月15日</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">構造計算書</span>
+                                <span class="info-value">令和6年8月28日</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">設計図書</span>
+                                <span class="info-value">令和6年8月30日</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">申請日</span>
+                                <span class="info-value">令和6年9月1日</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-rules">
+                <h3>【重要】書類の記載ルール</h3>
+                <ul>
+                    <li>氏名：姓と名の間に<strong>半角スペース1つ</strong>（例：山田 太郎）</li>
+                    <li>住所：<strong>漢数字表記</strong>が正式（例：一丁目2番3号）</li>
+                    <li>会社名：<strong>株式会社は略さない</strong>（例：建築設計事務所 株式会社）</li>
+                    <li>面積：<strong>小数点以下2桁</strong>（例：100.00㎡）</li>
+                    <li>日付：<strong>ゼロ埋めなし</strong>（例：9月1日 ○、9月01日 ×）</li>
+                </ul>
+            </div>
+            <p class="info-warning">※この情報は画面上部の「申請者・建築物情報を確認」ボタンでいつでも確認できます</p>
+            <button id="info-continue-button" class="action-button">1番窓口へ向かう</button>
+        </div>
+    </div>
+
+    <!-- 待機画面（窓口の待合室） -->
+    <div id="waiting-screen" class="screen">
+        <div class="office-environment">
+            <div class="fluorescent-light"></div>
+            <div class="window-counter">
+                <div class="counter-number" id="current-window-display">1</div>
+                <div class="counter-label">番窓口</div>
+            </div>
+            <div class="waiting-info">
+                <p id="waiting-message">窓口の順番をお待ちください...</p>
+            </div>
+            <button id="approach-button" class="action-button" style="display: none;">窓口へ進む</button>
+        </div>
+    </div>
+
+    <!-- 書類審査画面 -->
+    <div id="document-screen" class="screen">
+        <button id="show-info-button" class="info-button">申請者・建築物情報を確認</button>
+        <button id="show-submitted-button" class="info-button submitted-button">提出済み書類を確認</button>
+        <button id="show-law-button" class="info-button law-button">根拠法を確認</button>
+        <div class="document-container">
+            <div class="document-holder">
+                <div id="document-content" class="document">
+                    <!-- 書類の内容がここに動的に生成される -->
+                </div>
+            </div>
+            <div class="controls">
+                <button id="submit-button" class="action-button">提出する</button>
+                <div class="instruction">不備箇所をクリックして訂正印を押す（訂正印クリックで取り消し）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 情報確認モーダル -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal">&times;</span>
+            <div id="modal-info-content">
+                <!-- JavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 提出済み書類モーダル -->
+    <div id="submitted-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="close-submitted">&times;</span>
+            <div id="modal-submitted-content">
+                <!-- JavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 根拠法モーダル -->
+    <div id="law-modal" class="modal">
+        <div class="modal-content law-modal-content">
+            <span class="modal-close" id="close-law">&times;</span>
+            <h2>建築基準法 関連条文</h2>
+            <div id="modal-law-content">
+                <!-- JavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="result-screen" class="screen">
+        <div class="result-content">
+            <h2 id="result-title"></h2>
+            <p id="result-message"></p>
+            <button id="continue-button" class="action-button" style="display: none;">次へ</button>
+            <button id="retry-button" class="menu-button" style="display: none;">最初からやり直す</button>
+        </div>
+    </div>
+
+    <!-- エンディング画面 -->
+    <div id="ending-screen" class="screen">
+        <div class="ending-content">
+            <h2>おめでとうございます</h2>
+            <p>8番窓口まで無事に審査を通過しました。</p>
+            <p>すべての不備を訂正し、</p>
+            <p>建築確認申請が正式に受理されました。</p>
+            <p class="ending-stats">ループ回数: <span id="loop-count">0</span>回</p>
+            <p class="ending-message">念願のマイホーム建築に向けて、大きな一歩を踏み出した...</p>
+            <button id="restart-button" class="menu-button">タイトルに戻る</button>
+        </div>
+    </div>
+
+    <!-- 効果音用のオーディオ要素 -->
+    <audio id="stamp-sound" preload="auto"></audio>
+    <audio id="buzzer-sound" preload="auto"></audio>
+    <audio id="ambient-sound" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,871 @@
+/* リセットとベース設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Yu Gothic', 'Meiryo', sans-serif;
+    background: #2a2a2a;
+    color: #333;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* 画面切り替え */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* タイトル画面 */
+#title-screen {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    justify-content: center;
+    align-items: center;
+}
+
+.title-content {
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.7;
+}
+
+.title-description {
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.title-description p {
+    margin: 0.5rem 0;
+}
+
+.warning {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-top: 2rem !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ボタン共通スタイル */
+.menu-button, .action-button {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border: 2px solid #666;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 0.1rem;
+}
+
+.menu-button:hover, .action-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #999;
+    transform: translateY(-2px);
+}
+
+.action-button {
+    background: #4a4a4a;
+    border-color: #666;
+}
+
+.action-button:hover {
+    background: #5a5a5a;
+}
+
+/* ストーリー画面 */
+#story-screen {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    justify-content: center;
+    align-items: center;
+}
+
+.story-content {
+    max-width: 800px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.story-text {
+    margin-bottom: 3rem;
+}
+
+.story-paragraph {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 2;
+    margin: 1.5rem 0;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.story-paragraph:nth-child(1) { animation-delay: 0s; }
+.story-paragraph:nth-child(2) { animation-delay: 1s; }
+.story-paragraph:nth-child(3) { animation-delay: 2s; }
+.story-paragraph:nth-child(4) { animation-delay: 3.5s; }
+.story-paragraph:nth-child(5) { animation-delay: 5s; }
+.story-paragraph:nth-child(6) { animation-delay: 6.5s; }
+.story-paragraph:nth-child(7) { animation-delay: 8s; }
+.story-paragraph:nth-child(8) { animation-delay: 9.5s; }
+.story-paragraph:nth-child(9) { animation-delay: 11s; }
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* プレイヤー情報画面 */
+#info-screen {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.info-content {
+    max-width: 1200px;
+    padding: 1.5rem;
+    color: #e0e0e0;
+    width: 100%;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-content h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    flex-shrink: 0;
+}
+
+.info-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.info-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.8rem;
+    border-radius: 6px;
+}
+
+.info-section h3 {
+    font-size: 1rem;
+    color: #4a9eff;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    font-size: 0.85rem;
+}
+
+.info-label {
+    color: #999;
+    min-width: 120px;
+}
+
+.info-value {
+    color: #e0e0e0;
+    text-align: right;
+}
+
+.info-rules {
+    background: rgba(255, 200, 50, 0.1);
+    border: 2px solid rgba(255, 200, 50, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+.info-rules h3 {
+    color: #ffcc00;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.info-rules ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-rules li {
+    margin: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.5;
+    color: #e0e0e0;
+    font-size: 0.85rem;
+}
+
+.info-rules li:before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: #ffcc00;
+}
+
+.info-warning {
+    text-align: center;
+    color: #aaa;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* 情報画面のボタン */
+#info-screen .action-button {
+    margin-top: 0.5rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* 待機画面（役所の雰囲気） */
+#waiting-screen {
+    background: linear-gradient(180deg, #d4d4c8 0%, #b8b8aa 100%);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+}
+
+.office-environment {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 蛍光灯のちらつき効果 */
+.fluorescent-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 0.1; }
+    5% { opacity: 0.15; }
+    10% { opacity: 0.1; }
+    15% { opacity: 0.2; }
+    20% { opacity: 0.1; }
+    50% { opacity: 0.12; }
+}
+
+/* 窓口番号表示 */
+.window-counter {
+    background: #fff;
+    border: 3px solid #333;
+    padding: 3rem 4rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.counter-number {
+    font-size: 8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    line-height: 1;
+}
+
+.counter-label {
+    font-size: 2rem;
+    text-align: center;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.waiting-info {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#waiting-message {
+    font-size: 1.3rem;
+    color: #333;
+}
+
+/* 書類審査画面 */
+#document-screen {
+    background: #b8b8aa;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.info-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.info-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
+}
+
+.submitted-button {
+    top: 3.5rem;
+}
+
+.law-button {
+    top: 6rem;
+}
+
+.document-container {
+    width: 100%;
+    max-width: 900px;
+    max-height: calc(100vh - 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.document-holder {
+    background: linear-gradient(135deg, #d4c5a9 0%, #b8a98a 100%);
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+    border: 1px solid #9a8b6f;
+}
+
+.document {
+    background: #fff;
+    padding: 2rem;
+    border: 2px solid #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-height: auto;
+    font-family: "MS Mincho", "游明朝", "Yu Mincho", serif;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px double #000;
+    position: relative;
+}
+
+.document-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    color: #666;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #666;
+}
+
+.document-header h2 {
+    font-size: 1.6rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+}
+
+.document-theme {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.document-hint {
+    font-size: 0.75rem;
+    color: #666;
+    font-style: normal;
+    background: #fff9e6;
+    padding: 0.4rem 0.8rem;
+    border-left: 3px solid #ffc107;
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.document-body {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.doc-section-title {
+    background: #f0f0f0;
+    color: #000;
+    padding: 0.6rem 1rem;
+    margin: 1.2rem 0 0.4rem 0;
+    font-weight: bold;
+    border: 1px solid #000;
+    border-left: 4px solid #000;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}
+
+.doc-row {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    border: 1px solid #000;
+    border-top: none;
+    transition: all 0.2s ease;
+}
+
+.doc-row:first-of-type {
+    border-top: 1px solid #000;
+}
+
+.doc-header {
+    background: #e8e8e8;
+    font-weight: bold;
+    border: 2px solid #000;
+    border-bottom: 3px double #000;
+}
+
+.doc-field-label {
+    min-width: 180px;
+    max-width: 180px;
+    font-weight: normal;
+    color: #000;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    background: #f5f5f5;
+    border-right: 1px solid #000;
+    display: flex;
+    align-items: center;
+}
+
+.doc-field-value {
+    flex: 1;
+    color: #000;
+    position: relative;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    min-height: 2.2rem;
+}
+
+.doc-clickable {
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.doc-clickable:hover {
+    background: #fffacd !important;
+}
+
+/* 訂正印 */
+.correction-stamp {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 30%),
+        radial-gradient(circle, #dc3545 0%, #b02a37 100%);
+    color: white;
+    border: 3px solid #8b1f2a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: "MS Mincho", "游明朝", "Yu Mincho", serif;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    letter-spacing: 0.1em;
+}
+
+.correction-stamp::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    top: -2px;
+    left: -2px;
+}
+
+.correction-stamp:hover {
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1.08);
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* コントロール */
+.controls {
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+    padding: 0.5rem 0;
+}
+
+.controls .action-button {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+}
+
+.instruction {
+    color: #555;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+/* 結果画面 */
+#result-screen {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.result-content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+}
+
+#result-title {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+#result-message {
+    font-size: 1.1rem;
+    color: #ecf0f1;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    white-space: pre-line;
+}
+
+/* エンディング画面 */
+#ending-screen {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.ending-content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+    color: #ecf0f1;
+}
+
+.ending-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #4a9eff;
+}
+
+.ending-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0.8rem 0;
+}
+
+.ending-stats {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffcc00;
+    margin: 2rem 0;
+}
+
+.ending-message {
+    font-style: italic;
+    color: #95a5a6;
+    margin-top: 2rem;
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    margin: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #bdc3c7;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+.info-content-scroll {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.info-note {
+    text-align: center;
+    color: #95a5a6;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-note-small {
+    color: #95a5a6;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* 提出済み書類 */
+.no-documents {
+    text-align: center;
+    color: #95a5a6;
+    padding: 2rem;
+    font-style: italic;
+}
+
+.submitted-doc-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #4a9eff;
+    border-radius: 4px;
+}
+
+.had-anomaly {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.no-anomaly {
+    color: #2ecc71;
+    margin-left: 0.5rem;
+}
+
+/* 根拠法モーダル */
+.law-modal-content {
+    max-width: 900px;
+}
+
+.law-modal-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #4a9eff;
+    border-bottom: 2px solid #4a9eff;
+    padding-bottom: 0.5rem;
+}
+
+#modal-law-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.law-article {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a9eff;
+}
+
+.law-article h3 {
+    font-size: 1.3rem;
+    color: #4a9eff;
+    margin-bottom: 0.8rem;
+}
+
+.law-article-number {
+    font-size: 1rem;
+    color: #95a5a6;
+    margin-bottom: 0.5rem;
+}
+
+.law-article-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ecf0f1;
+    margin-bottom: 0.8rem;
+}
+
+.law-article-note {
+    font-size: 0.9rem;
+    color: #bdc3c7;
+    font-style: italic;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1024px) {
+    .info-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .game-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+    }
+
+    .counter-number {
+        font-size: 6rem;
+    }
+
+    .doc-field-label {
+        min-width: 100px;
+        font-size: 0.85rem;
+    }
+
+    .doc-field-value {
+        font-size: 0.85rem;
+    }
+
+    .info-button {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .submitted-button {
+        top: 3.5rem;
+    }
+}
