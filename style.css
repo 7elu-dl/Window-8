@@ -963,6 +963,11 @@ body {
         font-size: 0.85rem;
     }
 
+    .info-content {
+        max-height: calc(100vh - 2rem);
+        padding: 1rem;
+    }
+
     .story-content h2, .player-info h2 {
         font-size: 1.3rem;
         margin-bottom: 1rem;
