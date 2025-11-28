@@ -146,6 +146,12 @@ body {
     to { opacity: 1; }
 }
 
+/* ストーリー画面のボタン */
+#story-screen .action-button {
+    margin: 0 auto;
+    display: block;
+}
+
 /* プレイヤー情報画面 */
 #info-screen {
     background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
@@ -284,6 +290,7 @@ body {
     padding: 0.8rem 2.5rem;
     font-size: 1.1rem;
     flex-shrink: 0;
+    align-self: center;
 }
 
 /* 待機画面（役所の雰囲気） */
@@ -992,10 +999,15 @@ body {
         flex-direction: column;
     }
 
+    .document-container {
+        max-height: calc(100vh - 8rem);
+    }
+
     .document-holder {
         padding: 0.5rem;
         margin: 0.5rem 0;
         max-width: 100%;
+        max-height: calc(100vh - 16rem);
     }
 
     .document {
@@ -1255,6 +1267,14 @@ body {
 
     .subtitle {
         font-size: 0.7rem;
+    }
+
+    .document-container {
+        max-height: calc(100vh - 7rem);
+    }
+
+    .document-holder {
+        max-height: calc(100vh - 15rem);
     }
 
     .doc-field-label {
