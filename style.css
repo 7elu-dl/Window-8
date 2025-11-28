@@ -964,8 +964,12 @@ body {
     }
 
     .info-content {
-        max-height: calc(100vh - 2rem);
+        max-height: calc(100vh - 8rem);
         padding: 1rem;
+    }
+
+    #info-screen {
+        padding: 0.5rem;
     }
 
     .story-content h2, .player-info h2 {
