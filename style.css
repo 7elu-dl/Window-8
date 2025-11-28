@@ -370,10 +370,18 @@ body {
     overflow-y: auto;
 }
 
-.info-button {
+/* 情報ボタングループ */
+.info-buttons {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.info-button {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
     background: rgba(0, 0, 0, 0.5);
@@ -382,20 +390,12 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 100;
+    white-space: nowrap;
 }
 
 .info-button:hover {
     background: rgba(0, 0, 0, 0.7);
     transform: translateY(-2px);
-}
-
-.submitted-button {
-    top: 3.5rem;
-}
-
-.law-button {
-    top: 6rem;
 }
 
 .document-container {
@@ -537,6 +537,9 @@ body {
     display: flex;
     align-items: center;
     min-height: 2.2rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
 }
 
 .doc-clickable {
@@ -841,24 +844,45 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* タイトル・基本要素 */
     .game-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
     }
 
+    .subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .title-description {
+        font-size: 0.85rem;
+    }
+
+    /* ボタン */
+    .menu-button, .action-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* カウンター */
     .counter-number {
         font-size: 6rem;
     }
 
+    /* 書類フィールド */
     .doc-field-label {
-        min-width: 100px;
-        font-size: 0.85rem;
+        min-width: 120px;
+        max-width: 120px;
+        font-size: 0.8rem;
     }
 
     .doc-field-value {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
-    .info-button {
+    /* 情報ボタン */
+    .info-button, .law-button {
         top: 1rem;
         right: 1rem;
         font-size: 0.8rem;
@@ -867,5 +891,393 @@ body {
 
     .submitted-button {
         top: 3.5rem;
+    }
+
+    /* モーダル */
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .info-columns {
+        flex-direction: column;
+    }
+}
+
+/* スマートフォン対応 (480px以下) */
+@media (max-width: 480px) {
+    /* 全体 */
+    body {
+        font-size: 14px;
+    }
+
+    .screen {
+        padding: 1rem;
+    }
+
+    /* タイトル画面 */
+    .title-content {
+        padding: 1rem;
+    }
+
+    .game-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.15rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .title-description {
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .warning {
+        font-size: 0.75rem;
+    }
+
+    /* ボタン */
+    .menu-button, .action-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    /* ストーリー・情報画面 */
+    .story-content, .player-info {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .story-content h2, .player-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .story-content p, .player-info p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin: 0.6rem 0;
+    }
+
+    /* 待合室 */
+    .waiting-content {
+        padding: 1rem;
+    }
+
+    .waiting-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .window-number {
+        font-size: 3.5rem;
+        margin: 1rem 0;
+    }
+
+    .waiting-message {
+        font-size: 0.85rem;
+        margin: 1rem 0;
+    }
+
+    /* 書類画面 */
+    #document-screen {
+        padding: 0.5rem;
+        flex-direction: column;
+    }
+
+    .document-holder {
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        max-width: 100%;
+    }
+
+    .document {
+        padding: 1rem;
+        font-size: 0.7rem;
+    }
+
+    .document-number {
+        font-size: 0.65rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .document-header h2 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .document-theme {
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .document-hint {
+        font-size: 0.65rem;
+        padding: 0.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .doc-section-title {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.5rem;
+        margin: 0.4rem 0 0.25rem 0;
+    }
+
+    .doc-row {
+        font-size: 0.7rem;
+        min-height: 2rem;
+    }
+
+    .doc-field-label {
+        min-width: 90px;
+        max-width: 90px;
+        padding: 0.4rem;
+        font-size: 0.65rem;
+    }
+
+    .doc-field-value {
+        padding: 0.4rem;
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+
+    .correction-stamp {
+        width: 35px;
+        height: 35px;
+        font-size: 0.65rem;
+        border-width: 2px;
+        line-height: 31px;
+    }
+
+    /* 情報ボタン群 */
+    .info-buttons {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+    }
+
+    .info-button, .law-button {
+        position: static;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.7rem;
+        margin: 0;
+    }
+
+    .submitted-button {
+        position: static;
+    }
+
+    /* コントロールエリア */
+    .controls {
+        padding: 0.8rem 0.5rem;
+    }
+
+    .controls .action-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .instruction {
+        font-size: 0.65rem;
+        margin-top: 0.4rem;
+        line-height: 1.4;
+    }
+
+    /* 結果・エンディング画面 */
+    .result-content, .ending-content {
+        padding: 1rem;
+    }
+
+    #result-title, .ending-content h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    #result-message, .ending-content p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .ending-stats {
+        font-size: 1.1rem;
+    }
+
+    /* モーダル */
+    .modal {
+        padding: 0.5rem;
+    }
+
+    .modal-content {
+        width: 98%;
+        padding: 1rem;
+        max-height: 85vh;
+        font-size: 0.8rem;
+    }
+
+    .modal-close {
+        font-size: 1.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 30px;
+        height: 30px;
+        line-height: 28px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        padding-right: 2.5rem;
+    }
+
+    .modal-content h3 {
+        font-size: 0.95rem;
+        margin: 1rem 0 0.5rem 0;
+    }
+
+    .modal-content p {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        margin: 0.4rem 0;
+    }
+
+    .info-note {
+        font-size: 0.7rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .info-note-small {
+        font-size: 0.65rem;
+    }
+
+    .info-section {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+    }
+
+    .info-section h3 {
+        font-size: 0.9rem;
+    }
+
+    .info-section p {
+        font-size: 0.7rem;
+    }
+
+    .info-rules {
+        padding: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .info-rules h3 {
+        font-size: 0.9rem;
+    }
+
+    .info-rules ul {
+        padding-left: 1.2rem;
+    }
+
+    .info-rules li {
+        font-size: 0.7rem;
+        line-height: 1.5;
+        margin: 0.4rem 0;
+    }
+
+    /* 根拠法モーダル */
+    .law-article {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .law-article h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .law-article-number {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .law-article-text {
+        font-size: 0.7rem;
+        line-height: 1.6;
+        white-space: pre-line;
+    }
+
+    .law-article-note {
+        font-size: 0.65rem;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    /* 提出済み書類モーダル */
+    .submitted-doc-item {
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .had-anomaly, .no-anomaly {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+        display: inline-block;
+        margin-left: 0.3rem;
+    }
+
+    .no-documents {
+        font-size: 0.8rem;
+        padding: 2rem 1rem;
+    }
+}
+
+/* 極小デバイス (360px以下) */
+@media (max-width: 360px) {
+    .game-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .subtitle {
+        font-size: 0.7rem;
+    }
+
+    .doc-field-label {
+        min-width: 80px;
+        max-width: 80px;
+        font-size: 0.6rem;
+        padding: 0.3rem;
+    }
+
+    .doc-field-value {
+        font-size: 0.65rem;
+        padding: 0.3rem;
+    }
+
+    .correction-stamp {
+        width: 30px;
+        height: 30px;
+        font-size: 0.6rem;
+        line-height: 26px;
+    }
+
+    .info-button, .law-button {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.6rem;
     }
 }
